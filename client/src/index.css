@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  color: #222;
+}
+
+img {
+  @apply max-w-full;
+}
+
+header a {
+  text-decoration: none;
+  @apply text-inherit;
+}
+
+div.post {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+}
