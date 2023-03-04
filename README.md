@@ -12,3 +12,7 @@
    2. npx tailwindcss init -p
 
 3. Building homepage
+
+4. Routing with react-router-dom
+
+   1. npm i react-router-dom
