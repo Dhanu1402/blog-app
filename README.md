@@ -36,4 +36,7 @@
    8. npm i jsonwebtoken
 
 7. Checking if logged in
+
    1. npm i cookie-parser
+
+8. Logout functionality

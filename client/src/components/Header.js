@@ -14,12 +14,13 @@ export default function Header() {
     });
   }, []);
 
-  // function logout() {
-  //   fetch('http://localhost:4000/logout', {
-  //     credentials: 'include',
-  //     method: 'POST',
-  //   });
-  // }
+  function logout() {
+    fetch('http://localhost:4000/logout', {
+      credentials: 'include',
+      method: 'POST',
+    });
+    setUsername(null);
+  }
 
   return (
     <header className="flex justify-between mb-16 mt-2 items-center">
@@ -31,7 +32,9 @@ export default function Header() {
           <>
             <Link to="/create">Create new post</Link>
             <Link to={'/developers'}>Developers</Link>
-            <a>Logout</a>
+            <Link to={'/'} onClick={logout}>
+              Logout
+            </Link>
           </>
         )}
         {!username && (
