@@ -18,3 +18,19 @@
    1. npm i react-router-dom
 
 5. Login and register page
+
+6. Authentication
+
+   1. npm i express
+   2. npm i nodemon
+   3. mention in package.json
+      "scripts": {
+      "auto": "npx nodemon server.js",
+      "start": "nodemon server.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+      },
+   4. npm i cors
+   5. npm i mongoose
+   6. npm i dotenv
+   7. npm i bcryptjs
+   8. npm i jsonwebtoken
