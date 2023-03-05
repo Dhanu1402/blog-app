@@ -16,6 +16,8 @@ export default function RegisterScreen() {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
+      // if having any cookie it will included to our browser
+      credentials: 'include',
     });
     if (response.status === 200) {
       alert('Registration successful');

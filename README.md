@@ -34,3 +34,6 @@
    6. npm i dotenv
    7. npm i bcryptjs
    8. npm i jsonwebtoken
+
+7. Checking if logged in
+   1. npm i cookie-parser

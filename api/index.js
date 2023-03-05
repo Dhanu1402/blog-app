@@ -12,6 +12,8 @@ const jwt = require('jsonwebtoken');
 
 const User = require('./models/User');
 
+const cookieParser = require('cookie-parser');
+
 const app = express();
 
 // connecting to database
@@ -24,6 +26,8 @@ const bcryptSalt = bcrypt.genSaltSync(10);
 
 //parsing json from request
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use(
   cors({
@@ -68,6 +72,15 @@ app.post('/login', async (req, res) => {
   } else {
     res.status(400).json('wrong credentials');
   }
+});
+
+app.get('/profile', (req, res) => {
+  //grab the tokens
+  const { token } = req.cookies;
+  jwt.verify(token, jwtSecret, {}, (err, info) => {
+    if (err) throw err;
+    res.json(info);
+  });
 });
 
 app.listen(4000);
