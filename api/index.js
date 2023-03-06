@@ -114,7 +114,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   const newPath = path + '.' + ext;
   fs.renameSync(path, newPath);
 
-  //grab the tokens
+  //grab the tokens from cookie
   const { token } = req.cookies;
   jwt.verify(token, jwtSecret, {}, async (err, info) => {
     if (err) throw err;
@@ -129,6 +129,50 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
       // for displaying author name in post
       author: info.id,
     });
+    res.json(postDoc);
+  });
+});
+
+app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
+  let newPath = null;
+  // check if we have any file
+  if (req.file) {
+    // handling the file name with proper extension
+    const { originalname, path } = req.file;
+
+    const parts = originalname.split('.');
+
+    const ext = parts[parts.length - 1];
+
+    // rename the file
+    newPath = path + '.' + ext;
+    fs.renameSync(path, newPath);
+  }
+
+  // grab the cookie
+  const { token } = req.cookies;
+  jwt.verify(token, jwtSecret, {}, async (err, info) => {
+    if (err) throw err;
+
+    // grab the post
+    const { id, title, summary, content } = req.body;
+
+    const postDoc = await Post.findById(id);
+
+    // check if the user is the author of the post
+    const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+    if (!isAuthor) {
+      return res.status(400).json('you are not the author');
+    } else {
+      postDoc.set({
+        title,
+        summary,
+        content,
+        cover: newPath ? newPath : postDoc.cover,
+      });
+    }
+    await postDoc.save();
+
     res.json(postDoc);
   });
 });

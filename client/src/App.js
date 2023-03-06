@@ -8,6 +8,7 @@ import IndexScreen from './screens/IndexScreen';
 import { UserContextProvider } from './components/UserContext';
 import CreatePostScreen from './screens/CreatePostScreen';
 import SinglePostScreen from './screens/SinglePostScreen';
+import EditScreen from './screens/EditScreen';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/developers" element={<DevelopersScreen />} />
           <Route path="/create" element={<CreatePostScreen />} />
           <Route path="/post/:id" element={<SinglePostScreen />} />
+          <Route path="/edit/:id" element={<EditScreen />} />
         </Route>
       </Routes>
     </UserContextProvider>

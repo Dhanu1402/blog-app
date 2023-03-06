@@ -53,3 +53,5 @@
     1. npm i date-fns :- for date formatting
 
 12. Single post page
+
+13. Edit post page

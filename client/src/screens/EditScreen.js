@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import Editor from '../components/Editor';
 
-export default function CreatePostScreen() {
+export default function EditScreen() {
+  //grab id
+  const { id } = useParams();
+
   const [title, setTitle] = useState('');
 
   const [summary, setSummary] = useState('');
@@ -13,17 +16,33 @@ export default function CreatePostScreen() {
 
   const [redirect, setRedirect] = useState(false);
 
-  async function createNewPost(ev) {
+  useEffect(() => {
+    // fetch information from specific post
+    fetch('http://localhost:4000/post/' + id).then((response) => {
+      response.json().then((postInfo) => {
+        setTitle(postInfo.title);
+        setSummary(postInfo.summary);
+        setContent(postInfo.content);
+      });
+    });
+  }, []);
+
+  async function updatePost(ev) {
+    ev.preventDefault();
+    // grab all the information from the state and create form data out of it
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
-    data.set('file', files[0]);
+    data.set('id', id);
+    if (files?.[0]) {
+      data.set('file', files?.[0]);
+    }
     data.set('content', content);
 
-    ev.preventDefault();
     const response = await fetch('http://localhost:4000/post', {
-      method: 'POST',
+      method: 'PUT',
       body: data,
+      // send the cookie
       credentials: 'include',
     });
     if (response.ok) {
@@ -32,11 +51,11 @@ export default function CreatePostScreen() {
   }
 
   if (redirect) {
-    return <Navigate to={'/'} />;
+    return <Navigate to={'/post/' + id} />;
   }
 
   return (
-    <form action="" onSubmit={createNewPost}>
+    <form action="" onSubmit={updatePost}>
       <input
         type="title"
         placeholder={'Title'}
@@ -51,7 +70,7 @@ export default function CreatePostScreen() {
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <Editor value={content} onChange={setContent} />
-      <button className="mt-1.5">Create Post</button>
+      <button className="mt-1.5">Update Post</button>
     </form>
   );
 }
