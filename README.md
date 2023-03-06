@@ -42,3 +42,7 @@
 8. Logout functionality
 
 9. UserContext
+
+10. Create new post page
+    1. npm i react-quill :- for rich text editor
+    2. npm i multer :- for uploading images

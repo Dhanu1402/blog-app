@@ -6,6 +6,7 @@ import DevelopersScreen from './screens/DevelopersScreen';
 import Layout from './components/Layout';
 import IndexScreen from './screens/IndexScreen';
 import { UserContextProvider } from './components/UserContext';
+import CreatePostScreen from './screens/CreatePostScreen';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/developers" element={<DevelopersScreen />} />
+          <Route path="/create" element={<CreatePostScreen />} />
         </Route>
       </Routes>
     </UserContextProvider>

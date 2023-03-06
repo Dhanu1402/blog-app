@@ -12,7 +12,16 @@ const jwt = require('jsonwebtoken');
 
 const User = require('./models/User');
 
+const Post = require('./models/Post');
+
 const cookieParser = require('cookie-parser');
+
+const multer = require('multer');
+
+const fs = require('fs'); // handling file system used in renaming file
+
+// for uploading files in uploads folder
+const uploadMiddleware = multer({ dest: 'uploads/' });
 
 const app = express();
 
@@ -88,6 +97,29 @@ app.get('/profile', (req, res) => {
 
 app.post('/logout', (req, res) => {
   res.cookie('token', '').json('ok');
+});
+
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+  // handling the file name with proper extension
+  const { originalname, path } = req.file;
+
+  const parts = originalname.split('.');
+
+  const ext = parts[parts.length - 1];
+
+  // rename the file
+  const newPath = path + '.' + ext;
+  fs.renameSync(path, newPath);
+
+  // creation of post
+  const { title, summary, content } = req.body;
+  const postDoc = await Post.create({
+    title,
+    summary,
+    cover: newPath,
+    content,
+  });
+  res.json(postDoc);
 });
 
 app.listen(4000);
