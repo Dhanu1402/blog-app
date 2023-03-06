@@ -33,7 +33,7 @@ export default function Header() {
       <nav className="flex gap-4">
         {username && (
           <>
-            <Link to="/create">Create new post</Link>
+            <Link to="/create">Create post</Link>
             <Link to={'/developers'}>Developers</Link>
             <Link to={'/'} onClick={logout}>
               Logout

@@ -21,7 +21,12 @@ header a {
 
 div.post {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 700px) {
+  div.post {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
 }
 
 input {
@@ -30,4 +35,9 @@ input {
 
 button {
   @apply w-full block bg-gray-500 text-white rounded-md py-2 px-0;
+}
+
+div.post-page {
+  color: #333;
+  /* text-decoration: underline; */
 }

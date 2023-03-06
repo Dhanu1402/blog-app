@@ -49,4 +49,7 @@
     2. npm i multer :- for uploading images
 
 11. Displaying posts from database
+
     1. npm i date-fns :- for date formatting
+
+12. Single post page
