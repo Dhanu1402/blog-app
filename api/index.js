@@ -38,6 +38,9 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+// for displaying of images
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 app.use(
   cors({
     credentials: true,
@@ -111,15 +114,34 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   const newPath = path + '.' + ext;
   fs.renameSync(path, newPath);
 
-  // creation of post
-  const { title, summary, content } = req.body;
-  const postDoc = await Post.create({
-    title,
-    summary,
-    cover: newPath,
-    content,
+  //grab the tokens
+  const { token } = req.cookies;
+  jwt.verify(token, jwtSecret, {}, async (err, info) => {
+    if (err) throw err;
+    // creation of post
+    const { title, summary, content } = req.body;
+
+    const postDoc = await Post.create({
+      title,
+      summary,
+      cover: newPath,
+      content,
+      // for displaying author name in post
+      author: info.id,
+    });
+    res.json(postDoc);
   });
-  res.json(postDoc);
+});
+
+app.get('/post', async (req, res) => {
+  res.json(
+    await Post.find()
+      .populate('author', ['username'])
+      // sorting is done to put new post on top
+      .sort({ createdAt: -1 })
+      // limiting the number of posts to be 20 on home page
+      .limit(20)
+  );
 });
 
 app.listen(4000);
