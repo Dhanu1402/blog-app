@@ -40,3 +40,5 @@
    1. npm i cookie-parser
 
 8. Logout functionality
+
+9. UserContext

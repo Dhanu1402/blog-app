@@ -5,17 +5,20 @@ import RegisterScreen from './screens/RegisterScreen';
 import DevelopersScreen from './screens/DevelopersScreen';
 import Layout from './components/Layout';
 import IndexScreen from './screens/IndexScreen';
+import { UserContextProvider } from './components/UserContext';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<IndexScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/register" element={<RegisterScreen />} />
-        <Route path="/developers" element={<DevelopersScreen />} />
-      </Route>
-    </Routes>
+    <UserContextProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<IndexScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/developers" element={<DevelopersScreen />} />
+        </Route>
+      </Routes>
+    </UserContextProvider>
   );
 }
 
