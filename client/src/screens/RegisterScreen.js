@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserContext } from '../components/UserContext';
+import { Helmet } from 'react-helmet-async';
 
 export default function RegisterScreen() {
   const [username, setUsername] = useState('');
@@ -39,6 +40,9 @@ export default function RegisterScreen() {
 
   return (
     <form action="" className="max-w-md my-0 mx-auto" onSubmit={register}>
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <input
         type="text"
         placeholder="username"

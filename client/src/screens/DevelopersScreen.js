@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function DevelopersScreen() {
   let message = `lorem ipsum dolor sit amet, consectetur adipiscing elit.`;
   return (
     <section className="section-white bg-white py-2 px-0">
+      <Helmet>
+        <title>Developers</title>
+      </Helmet>
       <div className="container">
         <div className="row">
           <div className="col-md-12 text-center">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import Editor from '../components/Editor';
+import { Helmet } from 'react-helmet-async';
 
 export default function EditScreen() {
   //grab id
@@ -56,6 +57,9 @@ export default function EditScreen() {
 
   return (
     <form action="" onSubmit={updatePost}>
+      <Helmet>
+        <title>Edit Post</title>
+      </Helmet>
       <input
         type="title"
         placeholder={'Title'}

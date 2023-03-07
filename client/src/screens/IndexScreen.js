@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../components/Post';
+import { Helmet } from 'react-helmet-async';
 
 export default function IndexScreen() {
   const [posts, setPosts] = useState([]);
@@ -13,6 +14,12 @@ export default function IndexScreen() {
   }, []);
 
   return (
-    <div>{posts.length > 0 && posts.map((post) => <Post {...post} />)}</div>
+    <div>
+      {' '}
+      <Helmet>
+        <title>BloggingAdda</title>
+      </Helmet>
+      {posts.length > 0 && posts.map((post) => <Post {...post} />)}
+    </div>
   );
 }

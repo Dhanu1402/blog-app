@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Editor from '../components/Editor';
+import { Helmet } from 'react-helmet-async';
 
 export default function CreatePostScreen() {
   const [title, setTitle] = useState('');
@@ -36,22 +37,27 @@ export default function CreatePostScreen() {
   }
 
   return (
-    <form action="" onSubmit={createNewPost}>
-      <input
-        type="title"
-        placeholder={'Title'}
-        value={title}
-        onChange={(ev) => setTitle(ev.target.value)}
-      />
-      <input
-        type="summary"
-        placeholder={'Summary'}
-        value={summary}
-        onChange={(ev) => setSummary(ev.target.value)}
-      />
-      <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
-      <Editor value={content} onChange={setContent} />
-      <button className="mt-1.5">Create Post</button>
-    </form>
+    <div>
+      <Helmet>
+        <title>Create Post</title>
+      </Helmet>
+      <form action="" onSubmit={createNewPost}>
+        <input
+          type="title"
+          placeholder={'Title'}
+          value={title}
+          onChange={(ev) => setTitle(ev.target.value)}
+        />
+        <input
+          type="summary"
+          placeholder={'Summary'}
+          value={summary}
+          onChange={(ev) => setSummary(ev.target.value)}
+        />
+        <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
+        <Editor value={content} onChange={setContent} />
+        <button className="mt-1.5">Create Post</button>
+      </form>
+    </div>
   );
 }

@@ -57,3 +57,8 @@
 13. Edit post page
 
 14. Developers page
+
+15. Adding helmet to all the screens
+
+    1. npm i react-helmet-async
+    2. in index.js put everything under <HelmetProvider>

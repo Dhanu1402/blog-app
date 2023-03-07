@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { formatISO9075 } from 'date-fns';
 import { UserContext } from '../components/UserContext';
+import { Helmet } from 'react-helmet-async';
 
 export default function SinglePostScreen() {
   const [postInfo, setPostInfo] = useState(null);
@@ -24,6 +25,9 @@ export default function SinglePostScreen() {
 
   return (
     <div className="post-page">
+      <Helmet>
+        <title>Blog</title>
+      </Helmet>
       <h1 className="text-center my-2.5 mx-0 mb-1.5">{postInfo.title}</h1>
       <time className="text-center block text-xs text-gray-400">
         {formatISO9075(new Date(postInfo.createdAt))}
