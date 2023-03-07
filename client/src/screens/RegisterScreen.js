@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { UserContext } from '../components/UserContext';
 
 export default function RegisterScreen() {
   const [username, setUsername] = useState('');
@@ -7,6 +8,8 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState('');
 
   const [redirect, setRedirect] = useState(false);
+
+  const { setUserInfo } = useContext(UserContext);
 
   async function register(ev) {
     // prevent the page from refreshing
@@ -21,7 +24,10 @@ export default function RegisterScreen() {
     });
     if (response.status === 200) {
       alert('Registration successful');
-      setRedirect(true);
+      response.json().then((userInfo) => {
+        setUserInfo(userInfo);
+        setRedirect(true);
+      });
     } else {
       alert('Registration failed');
     }
