@@ -41,3 +41,81 @@ div.post-page {
   color: #333;
   /* text-decoration: underline; */
 }
+
+.team-item {
+  @apply bg-blue-50 text-center my-5 mx-0 pt-12 pl-5 pb-10 pr-5 rounded-r-lg rounded-l-lg;
+}
+
+.team-item {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.team-item:hover {
+  @apply bg-blue-300 text-white;
+}
+
+.team-item h3 {
+  @apply mt-5 ml-0 mb-px mr-0 text-red-500 text-lg font-bold uppercase;
+}
+
+.team-item:hover h3 {
+  @apply text-gray-500;
+}
+
+.section-subtitle {
+  @apply whitespace-pre-line;
+}
+
+.team-info {
+  @apply block mb-0;
+}
+
+.team-info p {
+  @apply text-gray-600 italic;
+}
+
+.team-info::after {
+  @apply inline-block align-middle content-none w-12 h-1 -mt-20;
+}
+
+.team-img {
+  max-width: 140px;
+  padding: 6px 6px;
+  background-color: #dedede;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+ul.team-icon {
+  @apply mt-6;
+}
+
+ul.team-icon li {
+  @apply inline-block my-0 mx-1;
+}
+
+ul.team-icon li {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+ul.team-icon li Link {
+  @apply m-0 gap-7 inline-block py-2 px-2 w-10 h-10 text-lg leading-4 bg-white rounded-3xl text-white;
+}
+
+.team-icon li Link:hover {
+  color: #dedede;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}

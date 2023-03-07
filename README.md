@@ -55,3 +55,5 @@
 12. Single post page
 
 13. Edit post page
+
+14. Developers page
